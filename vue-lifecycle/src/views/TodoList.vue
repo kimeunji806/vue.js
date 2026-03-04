@@ -1,4 +1,4 @@
-<!-- views/ToDoDirective.vue -->
+<!-- views/TodoList.vue -->
 <template>
   <div id="myDIV" class="header">
     <h2>My To Do List</h2>
@@ -7,18 +7,18 @@
   </div>
 
   <ul id="myUL">
-    <li
-      v-for="todo in todos"
-      v-bind:class="{ checked: todo.compelete }"
-      v-on:click.self="todoCompelete(todo.no)"
-    >
-      {{ todo.task }}
-      <span class="close" v-on:click="delTodo(todo.no)">X</span>
-    </li>
+    <!-- <li /> 태그 원래 위치 -->
+    <TaskInfo
+      v-for="info in todos"
+      v-bind:todo="info"
+      v-on:taskChecked="todoCompelete"
+      v-on:delTask="delTodo"
+    />
   </ul>
 </template>
 
 <script setup>
+import TaskInfo from "@/components/TaskInfo.vue";
 import { ref, reactive } from "vue";
 const todos = reactive([
   { no: 1, task: "Hit the gym", compelete: false },
@@ -62,7 +62,7 @@ const add = () => {
 };
 </script>
 
-<style scoped>
+<style>
 /* Include the padding and border in an element's total width and height */
 * {
   box-sizing: border-box;
