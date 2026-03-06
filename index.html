@@ -13,32 +13,35 @@
       fetch(`https://jsonplaceholder.typicode.com/posts`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
-        });
+          console.log("전체조회", data);
+        })
+        .catch((err) => console.log(err));
 
       // 단건조회
       fetch("https://jsonplaceholder.typicode.com/posts/1")
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
-        });
+          console.log("단건조회", data);
+        })
+        .catch((err) => console.log(err));
 
       // 등록
       fetch("https://jsonplaceholder.typicode.com/posts", {
         method: "POST",
         body: JSON.stringify({
-          userId: 1,
+          userId: 4,
           title: "테스트",
           body: "테스트입니다",
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8",
+          "Content-type": "application/json",
         },
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("응답 결과:", data);
-        });
+          console.log("등록:", data);
+        })
+        .catch((err) => console.log(err));
 
       // 수정
       fetch("https://jsonplaceholder.typicode.com/posts/1", {
@@ -50,18 +53,24 @@
           id: 1,
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8",
+          "Content-type": "application/json",
         },
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("응답 결과:", data);
-        });
+          console.log("수정:", data);
+        })
+        .catch((err) => console.log(err));
 
       // 삭제
       fetch("https://jsonplaceholder.typicode.com/posts/1", {
         method: "delete",
-      });
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("삭제:", data);
+        })
+        .catch((err) => console.log(err));
     </script>
   </body>
 </html>

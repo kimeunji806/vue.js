@@ -1,22 +1,4 @@
 <!-- views/TodoList.vue -->
-<template>
-  <div id="myDIV" class="header">
-    <h2>My To Do List</h2>
-    <input type="text" id="myInput" v-model="task" placeholder="Title..." />
-    <span type="button" v-on:click="add()" class="addBtn">Add</span>
-  </div>
-
-  <ul id="myUL">
-    <!-- <li /> 태그 원래 위치 -->
-    <TaskInfo
-      v-for="info in todos"
-      v-bind:todo="info"
-      v-on:taskChecked="todoCompelete"
-      v-on:delTask="delTodo"
-    />
-  </ul>
-</template>
-
 <script setup>
 import TaskInfo from "@/components/TaskInfo.vue";
 import { ref, reactive } from "vue";
@@ -61,7 +43,23 @@ const add = () => {
   task.value = "";
 };
 </script>
+<template>
+  <div id="myDIV" class="header">
+    <h2>My To Do List</h2>
+    <input type="text" id="myInput" v-model="task" placeholder="Title..." />
+    <span type="button" v-on:click="add()" class="addBtn">Add</span>
+  </div>
 
+  <ul id="myUL">
+    <!-- <li /> 태그 원래 위치 -->
+    <TaskInfo
+      v-for="info in todos"
+      v-bind:todo="info"
+      v-on:taskChecked="todoCompelete"
+      v-on:delTask="delTodo"
+    />
+  </ul>
+</template>
 <style>
 /* Include the padding and border in an element's total width and height */
 * {
